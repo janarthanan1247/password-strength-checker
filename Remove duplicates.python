@@ -1,0 +1,4 @@
+items = ["apple", "banana", "apple", "cherry", "banana", "date"]
+seen = []
+[seen.append(x) for x in items if x not in seen]
+print(seen)  # or just: print(list(dict.fromkeys(items)))

@@ -1,0 +1,35 @@
+import pandas as pd
+import numpy as np
+data = {
+    "Date": [
+        "2026-03-01", "2026-03-02", "2026-03-03",
+        "2026-03-05", "2026-03-07", "2026-03-10"
+    ],
+    "Category": [
+        "Food", "Travel", "Shopping",
+        "Food", "Bills", "Food"
+    ],
+    "Amount": [200, 150, 500, 300, 400, 250]
+}
+df = pd.DataFrame(data)
+df["Date"] = pd.to_datetime(df["Date"])
+df["Month"] = df["Date"].dt.month
+print(" Expense Data:")
+print(df)
+monthly_total = df.groupby("Month")["Amount"].sum()
+print("\n Monthly Spending Summary:")
+print(monthly_total)
+category_total = df.groupby("Category")["Amount"].sum()
+print("\n Category-wise Spending:")
+print(category_total)
+highest_category = category_total.idxmax()
+highest_amount = category_total.max()
+print("\n Highest Spending Category:")
+print(highest_category, "->", highest_amount)
+amount_array = np.array(df["Amount"])
+
+print("\n NumPy Insights:")
+print("Total Spending:", np.sum(amount_array))
+print("Average Spending:", np.mean(amount_array))
+print("Max Expense:", np.max(amount_array))
+print("Min Expense:", np.min(amount_array))
